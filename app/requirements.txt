@@ -1,0 +1,8 @@
+#requirements.txt is a list of the Python packages our app needs.
+#
+#For our app, we'll need packages like:
+
+fastapi
+
+uvicorn
+ 
