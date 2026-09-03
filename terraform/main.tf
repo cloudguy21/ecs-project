@@ -21,3 +21,12 @@ data "aws_subnets" "default" {
     values = [data.aws_vpc.default.id]
   }
 }
+
+resource "aws_security_group" "alb" {
+  name   = "ecs-project-alb-sg"
+  vpc_id = data.aws_vpc.default.id
+
+  tags = {
+    Name = "ecs-project-alb-sg"
+  }
+}
