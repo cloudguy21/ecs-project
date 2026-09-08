@@ -33,3 +33,15 @@ jobs:
 
       - name: Test AWS connection
         run: aws sts get-caller-identity
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ steps.login-ecr.outputs.registry }}/ecs-project:${{ github.sha }} .
+          docker push ${{ steps.login-ecr.outputs.registry }}/ecs-project:${{ github.sha }}
