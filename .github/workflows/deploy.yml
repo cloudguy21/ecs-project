@@ -56,4 +56,7 @@ jobs:
         run: terraform -chdir=terraform plan -var="image_tag=${{ github.sha }}"
   
       - name: Terraform Apply
-        run: terraform -chdir=terraform apply -auto-approve -var="image_tag=${{ github.sha }}"    
+        run: terraform -chdir=terraform apply -auto-approve -var="image_tag=${{ github.sha }}"   
+        
+      - name: Health check
+        run: curl -f https://tm.legendarymovesclothing.com/health
