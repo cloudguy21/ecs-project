@@ -45,6 +45,9 @@ jobs:
         run: |
           docker build -t ${{ steps.login-ecr.outputs.registry }}/ecs-project:${{ github.sha }} .
           docker push ${{ steps.login-ecr.outputs.registry }}/ecs-project:${{ github.sha }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
       
       - name: Terraform Init
         run: terraform -chdir=terraform init
