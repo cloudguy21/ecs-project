@@ -17,3 +17,8 @@ variable "certificate_arn" {
   description = "ARN of the ACM certificate for HTTPS"
   type        = string
 }
+
+variable "image_tag" {
+  description = "Docker image tag to deploy"
+  type        = string
+}

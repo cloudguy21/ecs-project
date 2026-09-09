@@ -1,4 +1,10 @@
 terraform {
+  backend "s3" {
+    bucket = "ecs-project-terraform-state-478078664193"
+    key    = "ecs-project/terraform.tfstate"
+    region = "us-east-1"
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -208,4 +214,5 @@ module "application" {
   public_subnet_ids  = module.networking.public_subnet_ids
   private_subnet_ids = module.networking.private_subnet_ids
   certificate_arn    = aws_acm_certificate.app.arn
+  image_tag = var.image_tag
 }
